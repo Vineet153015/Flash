@@ -17,6 +17,8 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,8 +28,12 @@ import androidx.compose.ui.res.stringResource
 import com.example.flash.data.DataSource
 
 @Composable
-fun StartScreen(){
+fun StartScreen(
+    flashViewModel: FlashViewModel,
+    onCategoryClicked : (String) -> Unit
+){
     val context = LocalContext.current
+    val flashUiState by flashViewModel.uiState.collectAsState()
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(128.dp),
@@ -36,7 +42,13 @@ fun StartScreen(){
         horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
         items(DataSource.loadCategories()){
-            CardCategory(context = context, stringResourceId = it.stringResourceId, imageResourceId = it.imageResourceId)
+            CardCategory(
+                context = context,
+                stringResourceId = it.stringResourceId,
+                imageResourceId = it.imageResourceId,
+                flashViewModel = flashViewModel,
+                onCategoryClicked = onCategoryClicked
+            )
         }
     }
 
@@ -46,14 +58,19 @@ fun StartScreen(){
 fun CardCategory(
     context: Context,
     stringResourceId : Int,
-    imageResourceId: Int
+    imageResourceId: Int,
+    flashViewModel: FlashViewModel,
+    onCategoryClicked: (String) -> Unit
 ){
+    val categoryName = stringResource(id = stringResourceId)
     Card(modifier = Modifier.clickable {
+        flashViewModel.updateClickText(categoryName)
         Toast.makeText(context,"This card was Clicked",Toast.LENGTH_SHORT).show()
+        onCategoryClicked(categoryName)
     }) {
         Column (modifier = Modifier.padding(5.dp)){
             Text(
-                text = stringResource(id = stringResourceId),
+                text = categoryName,
                 fontSize = 17.sp,
                 modifier = Modifier.width(150.dp)
 

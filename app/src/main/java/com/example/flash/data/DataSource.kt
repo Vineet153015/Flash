@@ -18,4 +18,10 @@ object DataSource {
             Categories(R.string.fresh_vegetable, R.drawable.vegetables)
         )
     }
+
+    fun loadItem(): List<Items>{
+        return listOf(
+            Items(R.string.banana_robusta,R.string.fresh_fruits,"2 kg",60,R.drawable.banana)
+        )
+    }
 }
