@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Flash</string>
+    <string name="sweet_tooth">Sweet Tooth</string>
+    <string name="stationary">Stationary</string>
+    <string name="Pet_Food">Pet Food</string>
+    <string name="Packages_Food">Packaged Food</string>
+    <string name="munchies">Munchies</string>
+    <string name="Kitchen_essential">Kitchen Essentials</string>
+    <string name="fresh_vegetable">Fresh Vegetables</string>
+    <string name="cleaning_essentials">Cleaning Essentials</string>
+    <string name="bread_and_biscuit">Bread and Biscuit</string>
+    <string name="beverages">Beverages</string>
+    <string name="bath_body">Bath_and_Body</string>
+    <string name="fresh_fruits">Fresh Fruits</string>
+</resources>
