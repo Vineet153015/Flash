@@ -21,7 +21,13 @@ object DataSource {
 
     fun loadItem(): List<Items>{
         return listOf(
-            Items(R.string.banana_robusta,R.string.fresh_fruits,"2 kg",60,R.drawable.banana)
+            Items(R.string.banana_robusta,R.string.fresh_fruits,"2 kg",60,R.drawable.banana),
+            Items(R.string.papaya_semi_ripe,R.string.fresh_fruits,"1 kg",100,R.drawable.papaya),
+            Items(R.string.pomegranate,R.string.fresh_fruits,"3 kg",65,R.drawable.pomogranate),
+            Items(R.string.shimla_apple,R.string.fresh_fruits,"2 kg",240,R.drawable.apple),
+            Items(R.string.pineapple,R.string.fresh_fruits,"4 kg",120,R.drawable.pineapple),
+            Items(R.string.pepsi_can,R.string.fresh_fruits,"4 kg",120,R.drawable.pepsi),
+
         )
     }
 }
