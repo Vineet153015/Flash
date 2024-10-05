@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,12 +26,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import com.example.flash.data.DataSource
 
 @Composable
 fun StartScreen(
     flashViewModel: FlashViewModel,
-    onCategoryClicked : (String) -> Unit
+    onCategoryClicked : (Int) -> Unit
 ){
     val context = LocalContext.current
     val flashUiState by flashViewModel.uiState.collectAsState()
@@ -60,20 +62,24 @@ fun CardCategory(
     stringResourceId : Int,
     imageResourceId: Int,
     flashViewModel: FlashViewModel,
-    onCategoryClicked: (String) -> Unit
+    onCategoryClicked: (Int) -> Unit
 ){
     val categoryName = stringResource(id = stringResourceId)
     Card(modifier = Modifier.clickable {
         flashViewModel.updateClickText(categoryName)
         Toast.makeText(context,"This card was Clicked",Toast.LENGTH_SHORT).show()
-        onCategoryClicked(categoryName)
+        onCategoryClicked(stringResourceId)
     }) {
-        Column (modifier = Modifier.padding(5.dp)){
+        Column (
+            modifier = Modifier.padding(5.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
             Text(
                 text = categoryName,
                 fontSize = 17.sp,
-                modifier = Modifier.width(150.dp)
-
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
             )
             Image(
                 painter = painterResource(id = imageResourceId),

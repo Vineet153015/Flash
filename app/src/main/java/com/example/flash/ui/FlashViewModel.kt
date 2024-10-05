@@ -1,6 +1,5 @@
 package com.example.flash.ui
 
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +18,7 @@ class FlashViewModel:ViewModel() {
         }
     }
 
-    fun updateSelectedCategory(updateCategory : String){
+    fun updateSelectedCategory(updateCategory: Int){
         _uistate.update {
             it.copy(
                 selectedCategory = updateCategory
